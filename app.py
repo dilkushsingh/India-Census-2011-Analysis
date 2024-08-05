@@ -9,4 +9,8 @@ list_of_states.insert(0, 'India')
 
 st.sidebar.title('India Census 2011 Analysis')
 
-st.sidebar.selectbox('Select State', list_of_states)
+selected_state = st.sidebar.selectbox('Select State', list_of_states)
+
+primary = st.sidebar.selectbox('Select Primary Parameter', list(df.columns[4:]))
+secondary = st.sidebar.selectbox('Select Secondary Parameter', list(df.columns[4:]))
+
