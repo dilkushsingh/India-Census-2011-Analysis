@@ -19,8 +19,12 @@ secondary = st.sidebar.selectbox('Select Secondary Parameter', list(df.columns[4
 plot = st.sidebar.button('Analyze')
 
 if plot:
+    st.text('Size represent Primary parameter.')
+    st.text('Color represent Secondary parameter.')
     if selected_state == 'India':
-        fig = px.scatter_mapbox(df, lat='Latitude', lon='Longitude', size=primary, color=secondary, zoom=3.5, size_max=35, mapbox_style='carto-positron', width=1080, height=700)
+        fig = px.scatter_mapbox(df, lat='Latitude', lon='Longitude', size=primary, color=secondary, zoom=3.5, size_max=35, mapbox_style='carto-positron', width=1080, height=700, hover_name='District')
         st.plotly_chart(fig, use_container_width=True)
     else:
-        pass
+        state_df = df[df['State'] == selected_state]
+        fig = px.scatter_mapbox(state_df, lat='Latitude', lon='Longitude', size=primary, color=secondary, zoom=5, size_max=35, mapbox_style='carto-positron', width=1080, height=700, hover_name='District')
+        st.plotly_chart(fig, use_container_width=True)
